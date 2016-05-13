@@ -1,0 +1,13 @@
+<h1>products</h1>
+<div id="modal" ng-init="scrollOff()">
+	<div id="modal-inner" click-outside="go();">
+		<flex-slider slide="product in products track by $index" animation="slide" control-nav="thumbnails">
+		  <li data-thumb="{{ product.images.image[3].value }}">
+		    <img ng-src="{{ product.images.image[3].value }}">
+		    <div class="flex-desc">
+		    	<p>{{product.title}}</p>
+		    </div>
+		  </li>
+		</flex-slider>
+	</div>
+</div>

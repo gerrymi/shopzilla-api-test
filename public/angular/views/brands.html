@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row" infinite-scroll='shopZilla.nextPage()' infinite-scroll-disabled='shopZilla.busy' infinite-scroll-distance='.1'>
+    <div class="header">
+      <h1>ShopZilla</h1>
+      <form class="generate-form" action="/" onSubmit="return process();">
+          <h2>Brand Results For: <input placeholder="{{ cats }}" type="text" id="name" name="name" autocomplete="off"/></h2>
+      </form>
+    </div>
+    <div ng-repeat="brand in shopZilla.brands" class="fade-in col-md-4">
+        <a class="brand-links" href="#/{{cats}}/{{ brand.id }}" ng-click="scrollOff();">
+            <h3>{{ brand.name }} <small>({{brand.productCount}})</small></h3>
+            <h4><small>Brand ID: {{brand.id}}</small></h4>
+        </a>
+    </div>
+    <div class="loading" ng-show='shopZilla.busy'>
+      <img src="/public/images/loading.gif" alt="">
+    </div>
+  </div>
+</div>
+<script>
+  function process()
+  {
+  var url="#/" + document.getElementById("name").value;
+  location.href=url;
+  return false;
+  }
+</script>
+<div ui-view></div>

@@ -38,6 +38,9 @@ app.controller('galleryCtrl', function($window, $scope, $rootScope, $stateParams
   $http.get("http://catalog.bizrate.com/services/catalog/v1/us/product?apiKey=f1131affb74662c8a9d73bfa68b4216d&publisherId=610065&placementId=&categoryId=&keyword="+$stateParams.cats+"&productId=&productIdType=&offersOnly=&merchantId=&brandId="+$stateParams.products+"&biddedOnly=&minPrice=&maxPrice=&minMarkdown=&zipCode=&freeShipping=&start=0&results=10000&backfillResults=0&startOffers=0&resultsOffers=0&sort=relevancy_desc&attFilter=&attWeights=&attributeId=&resultsAttribute=&resultsAttributeValues=&showAttributes=&showProductAttributes=&minRelevancyScore=100&maxAge=&showRawUrl=&imageOnly=&reviews=none&retailOnly=&format=json&callback=callback").then(function(res){
     $scope.products = res.data.products.product;
   });
+  $http.get("http://catalog.bizrate.com/services/catalog/v1/us/product?apiKey=f1131affb74662c8a9d73bfa68b4216d&publisherId=610065&placementId=&categoryId=&keyword="+$stateParams.cats+"&productId=&productIdType=&offersOnly=&merchantId=&brandId=&biddedOnly=&minPrice=&maxPrice=&minMarkdown=&zipCode=&freeShipping=&start=0&results=10000&backfillResults=0&startOffers=0&resultsOffers=0&sort=relevancy_desc&attFilter=&attWeights=&attributeId=&resultsAttribute=&resultsAttributeValues=&showAttributes=&showProductAttributes=&minRelevancyScore=100&maxAge=&showRawUrl=&imageOnly=&reviews=none&retailOnly=&format=json&callback=callback").then(function(res){
+    $scope.productsAll = res.data.products.product;
+  });
 })
 app.factory('shopZilla', function($http, $stateParams) {
 	var shopZilla = function() {
@@ -45,14 +48,19 @@ app.factory('shopZilla', function($http, $stateParams) {
 		this.busy = false;
 	};
 	var loaded = 0
-
+  console.log (loaded)
   shopZilla.prototype.nextPage = function() {
+    console.log ("nextPage")
 		if (this.busy) return;
 		this.busy = true;
-		  $http.get("http://catalog.bizrate.com/services/catalog/v1/us/brands?apiKey=f1131affb74662c8a9d73bfa68b4216d&publisherId=610065&start=0&results=10000&keyword="+$stateParams.cats+"&format=json&callback=callback").then(function(res){
+		  $http.get("http://catalog.bizrate.com/services/catalog/v1/us/brands?apiKey=f1131affb74662c8a9d73bfa68b4216d&publisherId=610065&start="+loaded+"&results=20&keyword="+$stateParams.cats+"&format=json&callback=callback").then(function(res){
         brands = res.data.brands.brand;
-        this.brands = brands;
-		  }.bind(this));
+        for (i=0; i<brands.length; i++) {
+          this.brands.push(brands[i]);
+        }
+        loaded += 20;
+        this.busy = false;
+      }.bind(this));
 	};
     return shopZilla;
 });

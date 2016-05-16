@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row" infinite-scroll='shopZilla.nextPage()' infinite-scroll-disabled='shopZilla.busy' infinite-scroll-distance='.1'>
     <div class="header">
       <h1>ShopZilla</h1>
@@ -6,14 +6,27 @@
           <h2>Brand Results For: <input placeholder="{{ cats }}" type="text" id="name" name="name" autocomplete="off"/></h2>
       </form>
     </div>
-    <div ng-repeat="brand in shopZilla.brands" class="fade-in col-md-4">
-        <a class="brand-links" href="#/{{cats}}/{{ brand.id }}" ng-click="scrollOff();">
-            <h3>{{ brand.name }} <small>({{brand.productCount}})</small></h3>
-            <h4><small>Brand ID: {{brand.id}}</small></h4>
-        </a>
+    <div class="col-md-10">
+      <div ng-repeat="prod in productsAll" class="fade-in col-md-2 product-view">
+          <a href="{{ prod.url.value }}" target="_blank" ng-click="scrollOff();">
+              <img src="{{ prod.images.image[3].value }}" alt="">
+              <div class="product-view-text">
+                <h5>{{ prod.title }}</h5>
+              </div> 
+          </a>
+      </div>
     </div>
-    <div class="loading" ng-show='shopZilla.busy'>
-      <img src="/public/images/loading.gif" alt="">
+    <div class="col-md-2">
+      <div ng-repeat="brand in shopZilla.brands" class="fade-in">
+          <a class="brand-links" href="#/{{cats}}/{{ brand.id }}" ng-click="scrollOff();">
+              <h3>{{ brand.name }} <small>({{brand.productCount}})</small></h3>
+              <h4><small>Brand ID: {{brand.id}}</small></h4>
+          </a>
+      </div>
+      <button ng-click='shopZilla.nextPage()'>more</button>
+      <div class="loading" ng-show='shopZilla.busy'>
+        <img src="/public/images/loading.gif" alt="">
+      </div>
     </div>
   </div>
 </div>

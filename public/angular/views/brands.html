@@ -9,7 +9,7 @@
     <div class="col-md-10">
       <div ng-repeat="prod in productsAll" class="fade-in col-md-2 product-view">
           <a href="{{ prod.url.value }}" target="_blank" ng-click="scrollOff();">
-              <img src="{{ prod.images.image[3].value }}" alt="">
+              <img ng-src="{{ prod.images.image[3].value }}" alt="">
               <div class="product-view-text">
                 <h5>{{ prod.title }}</h5>
               </div> 

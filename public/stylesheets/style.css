@@ -54,6 +54,13 @@ a:hover {
 	overflow: hidden;
 	border-bottom: 5px solid #222;
 	margin-bottom: 10px;
+	position: fixed;
+	width: 100%;
+	z-index: 2;
+	background-color: #fff;
+}
+.col-md-10, .col-md-2 {
+	padding-top: 50px;
 }
 .header h1 {
 	margin-right: 50px;

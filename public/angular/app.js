@@ -3,17 +3,17 @@ app.config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
     .state('brands', {
       url: "/:cats",
-      templateUrl: '/shopzilla-api-test/public/angular/views/brands.html',
+      templateUrl: '/public/angular/views/brands.html',
       controller: 'galleryCtrl'
     })
     .state('brands.all', {
       url: "/",
-      templateUrl: '/shopzilla-api-test/public/angular/views/all.html',
+      templateUrl: '/public/angular/views/all.html',
       controller: 'galleryCtrl'
     })
     .state('brands.products', {
       url: "/:products",
-      templateUrl: '/shopzilla-api-test/public/angular/views/products.html',
+      templateUrl: '/public/angular/views/products.html',
       controller: 'galleryCtrl'
     })
   $urlRouterProvider.otherwise("/");

@@ -44,17 +44,19 @@ app.controller('galleryCtrl', function($window, $scope, $rootScope, $stateParams
     console.log ("hello", unfiltered)
     var filtered = unfiltered.filter(function(product) {
       var words = JSON.stringify(product).split(' ')
+      var final = false
       for (j=0; j<negativeFilters.length; j++) {
         for (i=0; i<words.length; i++) {
           if (negativeFilters[j] == words[i]) {
-            return false
+            final = false
             console.log ('false')
           } else {
-            return true
+            final = true
             console.log ('true')
           }
         }  
       }
+      return final
     })
     console.log("hello", filtered)
     $scope.productsAll = filtered

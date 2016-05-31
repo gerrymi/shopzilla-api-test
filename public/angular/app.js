@@ -42,7 +42,7 @@ app.controller('galleryCtrl', function($window, $scope, $rootScope, $stateParams
     var negativeFilters = ["men", "mens", "men's", "boy's", "kid", "kids", "kid's", "child", "child's", "childs", "children", "childrens", "children's"]
     var unfiltered = res.data.products.product
     var filtered = unfiltered.filter(function(product) {
-      var words = product.split(' ')
+      var words = JSON.stringify(product).split(' ')
       console.log ('hello '+words)
       for (j=0; j<negativeFilters.length; j++) {
         for (i=0; i<words.length; i++) {

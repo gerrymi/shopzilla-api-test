@@ -39,7 +39,20 @@ app.controller('galleryCtrl', function($window, $scope, $rootScope, $stateParams
     $scope.products = res.data.products.product;
   });
   $http.get("http://catalog.bizrate.com/services/catalog/v1/us/product?apiKey=f1131affb74662c8a9d73bfa68b4216d&publisherId=610065&placementId=&categoryId=&keyword="+$stateParams.cats+"&productId=&productIdType=&offersOnly=&merchantId=&brandId=&biddedOnly=&minPrice=&maxPrice=&minMarkdown=&zipCode=&freeShipping=&start=0&results=10000&backfillResults=0&startOffers=0&resultsOffers=0&sort=relevancy_desc&attFilter=&attWeights=&attributeId=&resultsAttribute=&resultsAttributeValues=&showAttributes=&showProductAttributes=&minRelevancyScore=100&maxAge=&showRawUrl=&imageOnly=&reviews=none&retailOnly=&format=json&callback=callback").then(function(res){
-    $scope.productsAll = res.data.products.product;
+    var negativeFilters = ["men", "mens", "men's", "boy's", "kid", "kids", "kid's", "child", "child's", "childs", "children", "childrens", "children's"]
+    var unfiltered = res.data.products.product
+    var filtered = unfiltered.filter(function(product) {
+      var words = product.split(' ')
+      console.log (words)
+      for (j=0; j<negativeFilters.length; j++) {
+        for (i=0; i<words.length; i++) 
+          if (negativeFilters[j] == words[i]) {
+            return true
+          }
+        }  
+      }
+    })
+    $scope.productsAll = filtered
   });
 })
 app.factory('shopZilla', function($http, $stateParams) {

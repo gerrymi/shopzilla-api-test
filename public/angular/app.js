@@ -43,7 +43,7 @@ app.controller('galleryCtrl', function($window, $scope, $rootScope, $stateParams
     var unfiltered = res.data.products.product
     var filtered = unfiltered.filter(function(product) {
       var words = product.split(' ')
-      console.log (words)
+      console.log ('hello '+words)
       for (j=0; j<negativeFilters.length; j++) {
         for (i=0; i<words.length; i++) {
           if (negativeFilters[j] == words[i]) {
@@ -52,6 +52,7 @@ app.controller('galleryCtrl', function($window, $scope, $rootScope, $stateParams
         }  
       }
     })
+    console.log("hello "+filterd)
     $scope.productsAll = filtered
   });
 })
@@ -61,9 +62,7 @@ app.factory('shopZilla', function($http, $stateParams) {
 		this.busy = false;
 	};
 	var loaded = 0
-  console.log (loaded)
   shopZilla.prototype.nextPage = function() {
-    console.log ("nextPage")
 		if (this.busy) return;
 		this.busy = true;
 		  $http.get("http://catalog.bizrate.com/services/catalog/v1/us/brands?apiKey=f1131affb74662c8a9d73bfa68b4216d&publisherId=610065&start="+loaded+"&results=20&keyword="+$stateParams.cats+"&format=json&callback=callback").then(function(res){

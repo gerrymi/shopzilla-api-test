@@ -46,7 +46,7 @@ app.controller('galleryCtrl', function($window, $scope, $rootScope, $stateParams
       var final = true
       for (j=0; j<negativeFilters.length; j++) {
         for (i=0; i<words.length; i++) {
-          if (negativeFilters[j].toUpperCase() == words[i].toUpperCase().replace(/,/g, '')) {
+          if (negativeFilters[j].toUpperCase() == words[i].toUpperCase().replace(/,/g, ' ')) {
             final = false
           }
         }  

@@ -49,6 +49,8 @@ app.controller('galleryCtrl', function($window, $scope, $rootScope, $stateParams
           if (negativeFilters[j] == words[i]) {
             final = false
             console.log ('false '+ negativeFilters[j]+" "+words[i])
+          } else {
+            console.log ('true '+ negativeFilters[j]+" "+words[i])
           }
         }  
       }

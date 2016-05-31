@@ -47,12 +47,14 @@ app.controller('galleryCtrl', function($window, $scope, $rootScope, $stateParams
       for (j=0; j<negativeFilters.length; j++) {
         for (i=0; i<words.length; i++) {
           if (negativeFilters[j] == words[i]) {
+            return false
+          } else {
             return true
           }
         }  
       }
     })
-    console.log("hello "+filterd)
+    console.log("hello "+filtered)
     $scope.productsAll = filtered
   });
 })

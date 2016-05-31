@@ -46,6 +46,7 @@ app.controller('galleryCtrl', function($window, $scope, $rootScope, $stateParams
       var final = true
       for (j=0; j<negativeFilters.length; j++) {
         for (i=0; i<words.length; i++) {
+          console.log (negativeFilters[j]+" "+words[i])
           if (negativeFilters[j] == words[i]) {
             final = false
             console.log ('false '+ negativeFilters[j]+" "+words[i])

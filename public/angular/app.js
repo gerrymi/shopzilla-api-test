@@ -51,9 +51,10 @@ app.controller('galleryCtrl', function($window, $scope, $rootScope, $stateParams
           }
         }  
       }
-      console.log(final)
       return final
     })
+    console.log(unfiltered.length)
+    console.log(filtered.length)
     $scope.productsAll = filtered
   });
 })

@@ -43,16 +43,16 @@ app.controller('galleryCtrl', function($window, $scope, $rootScope, $stateParams
     var unfiltered = res.data.products.product
     console.log ("hello", unfiltered)
     var filtered = unfiltered.filter(function(product) {
-      var words = JSON.stringify(product).split(' ')
+      var words = JSON.stringify(product).split('\n')
       var final = false
       for (j=0; j<negativeFilters.length; j++) {
         for (i=0; i<words.length; i++) {
           if (negativeFilters[j] == words[i]) {
             final = true
-            console.log ('true '+ negativeFilters[i]+" "+words[i])
+            console.log ('true '+ negativeFilters[j]+" "+words[i])
           } else {
             final = false
-            console.log ('false '+ negativeFilters[i]+" "+words[i])
+            console.log ('false '+ negativeFilters[j]+" "+words[i])
           }
         }  
       }

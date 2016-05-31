@@ -41,9 +41,8 @@ app.controller('galleryCtrl', function($window, $scope, $rootScope, $stateParams
   $http.get("http://catalog.bizrate.com/services/catalog/v1/us/product?apiKey=f1131affb74662c8a9d73bfa68b4216d&publisherId=610065&placementId=&categoryId=&keyword="+$stateParams.cats+"&productId=&productIdType=&offersOnly=&merchantId=&brandId=&biddedOnly=&minPrice=&maxPrice=&minMarkdown=&zipCode=&freeShipping=&start=0&results=100&backfillResults=0&startOffers=0&resultsOffers=0&sort=relevancy_desc&attFilter=&attWeights=&attributeId=&resultsAttribute=&resultsAttributeValues=&showAttributes=&showProductAttributes=&minRelevancyScore=100&maxAge=&showRawUrl=&imageOnly=&reviews=none&retailOnly=&format=json&callback=callback").then(function(res){
     var negativeFilters = ["men", "mens", "men's", "boy's", "kid", "kids", "kid's", "child", "child's", "childs", "children", "childrens", "children's", "nike"]
     var unfiltered = res.data.products.product
-    console.log ("hello", unfiltered)
     var filtered = unfiltered.filter(function(product) {
-      var words = JSON.stringify(product.description).split(' ')
+      var words = JSON.stringify(product.title).split(' ')
       var final = true
       for (j=0; j<negativeFilters.length; j++) {
         for (i=0; i<words.length; i++) {
@@ -56,7 +55,6 @@ app.controller('galleryCtrl', function($window, $scope, $rootScope, $stateParams
       console.log(final)
       return final
     })
-    console.log("hello", filtered)
     $scope.productsAll = filtered
   });
 })

@@ -48,9 +48,9 @@ app.controller('galleryCtrl', function($window, $scope, $rootScope, $stateParams
         for (i=0; i<words.length; i++) {
           if (negativeFilters[j].toUpperCase() == words[i].toUpperCase()) {
             final = false
-            console.log ('false '+ negativeFilters[j]+" "+words[i])
+            console.log ('false '+ negativeFilters[j].toUpperCase()+" "+words[i].toUpperCase())
           } else {
-            console.log ('true '+ negativeFilters[j]+" "+words[i])
+            console.log ('true '+ negativeFilters[j].toUpperCase()+" "+words[i].toUpperCase())
           }
         }  
       }

@@ -45,7 +45,7 @@ app.controller('galleryCtrl', function($window, $scope, $rootScope, $stateParams
       var words = product.split(' ')
       console.log (words)
       for (j=0; j<negativeFilters.length; j++) {
-        for (i=0; i<words.length; i++) 
+        for (i=0; i<words.length; i++) {
           if (negativeFilters[j] == words[i]) {
             return true
           }
